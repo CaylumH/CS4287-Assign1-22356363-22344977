@@ -1,0 +1,62 @@
+Cell 1
+# Joe Considine (22344977)
+# Caylum Hurley (22356363)
+
+#Does code execute without errors?
+#Dataset used:
+
+
+
+Cell 2
+#Imports
+
+import numpy as np # nummeric arrays
+import pandas as pd # dataframes/csv handling
+import tensorflow as tf # model and training
+import matplotlib.pyplot as plt # plotting
+import shutil # file handling
+import random # sampling
+import os # file path operations
+import itertools # confusion matrix plotting
+
+# For model and training
+from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras.preprocessing import image_dataset_from_directory
+
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import classification_report, confusion_matrix # for model evaluation
+from sklearn.model_selection import train_test_split # for splitting data
+from glob import glob # file pattern matching
+
+# Random seed for reproducibility
+seed = 42
+random.seed(seed)
+tf.random.set_seed(seed)
+np.random.seed(seed)
+
+
+
+Cell 3
+data_directory = "C:/Users/joeco/OneDrive/Documents/CS4287/archive(1)/" # Dataset from Kaggle
+csv_file = os.path.join(data_directory, "dog_breeds.csv")
+image_directory = os.path.join(data_directory, "train") # Image directory
+
+# Load labels from csv
+labels = pd.read_csv(csv_file)
+print("Dataset size ", len(labels))
+print("Number of breeds ", labels['Breed'].nunique())
+print(labels.head())
+
+
+
+Cell 4
+label_encoder = LabelEncoder()
+labels['Breed_Encoded'] = label_encoder.fit_transform(labels['Breed'])
+
+def load_and_preprocess_image(image_path, label):
+    image = tf.io.read_file(image_path)
+    image = tf.image.decode_jpeg(image, channels=3)
+    image = tf.image.resize(image, [224, 224])
+    image = image / 255.0  # Normalize to [0,1]
+    return image, label
