@@ -38,7 +38,7 @@ np.random.seed(seed)
 
 
 Cell 3
-data_directory = "C:/Users/joeco/OneDrive/Documents/CS4287/archive(1)/" # Dataset from Kaggle
+data_directory = "Miscellaneous\dog_breeds(in).csv" # Dataset from Kaggle
 csv_file = os.path.join(data_directory, "dog_breeds.csv")
 image_directory = os.path.join(data_directory, "train") # Image directory
 
