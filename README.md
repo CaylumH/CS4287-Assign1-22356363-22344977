@@ -1,5 +1,11 @@
 # CS4287-Assign1-CNNs
 
+Open Data Repositories Used
+
+MNIST Handwritten Digit Database
+Source: http://yann.lecun.com/exdb/mnist/
+Accessed via TensorFlow
+
 MNIST - Dataset of images with handritten numbers from 0 to 9 on each one
 
 Each image is 28 by 28 pixels and in black and white
